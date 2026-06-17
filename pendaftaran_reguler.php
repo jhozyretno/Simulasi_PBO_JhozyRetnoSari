@@ -35,8 +35,9 @@ class pendaftaran_reguler extends Pendaftaran {
     }
 
     public function hitungTotalBiaya() {
-        return 0; 
+        return $this->getBiayaPendaftaranDasar(); 
     }
+
 
     public function tampilkanInfoJalur() {
         return "Prodi: " . $this->getPilihanProdi() . " | Lokasi: " . $this->getLokasiKampus();

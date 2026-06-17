@@ -35,7 +35,7 @@ class pendaftaran_kedinasan extends Pendaftaran {
     }
 
     public function hitungTotalBiaya() {
-        return 0; 
+        return $this->getBiayaPendaftaranDasar() * 1.25; 
     }
 
     public function tampilkanInfoJalur() {
