@@ -27,8 +27,8 @@ class pendaftaran_prestasi extends Pendaftaran {
                 $row['asal_sekolah'],
                 $row['nilai_ujian'],
                 $row['biaya_pendaftaran_dasar'],
-                $row['jenis_prestasi'],  
-                $row['tingkat_prestasi']  
+                $row['jenis_prestasi'] ?? '',
+                $row['tingkat_prestasi'] ?? '' 
             );
         }
         return $hasil;

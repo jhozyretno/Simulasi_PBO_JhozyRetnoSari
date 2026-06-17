@@ -1,37 +1,32 @@
 <?php
-
-
-// Debugging: Cek apakah file ada
-if (file_exists('pendaftaran_prestasi.php')) {
-    echo "File ditemukan!";
-} else {
-    echo "File TIDAK ditemukan! Periksa nama file dan lokasi folder.";
-}
-exit(); // Hentikan sementara untuk melihat hasilnya
-
-require_once 'database.php';
+require_once 'Database.php';
 require_once 'pendaftaran_reguler.php';
 require_once 'pendaftaran_prestasi.php';
 require_once 'pendaftaran_kedinasan.php';
 
 // Inisialisasi koneksi
-$db = (new Database())->getConnection();
+$dbConnection = new Database();
+$db = $dbConnection->getConnection();
 
-// Mengambil data untuk setiap jalur
+if ($db === null) {
+    die("Koneksi database gagal. Periksa konfigurasi di Database.php.");
+}
+
+// Mengambil data
 $dataReguler = pendaftaran_reguler::getDaftarReguler($db);
 $dataPrestasi = pendaftaran_prestasi::getDaftarPrestasi($db);
 $dataKedinasan = pendaftaran_kedinasan::getDaftarKedinasan($db);
 
-// Fungsi pembantu untuk membuat tabel
+// Fungsi render tabel
 function renderTabel($judul, $daftarData) {
-    echo "<h2>Daftar Pendaftaran - $judul</h2>";
-    echo "<table border='1' cellpadding='10' cellspacing='0'>";
-    echo "<thead>
+    echo "<h2>$judul</h2>";
+    echo "<table border='1' cellpadding='8' cellspacing='0' style='width:100%; border-collapse:collapse; margin-bottom:20px;'>";
+    echo "<thead style='background-color: #f2f2f2;'>
             <tr>
-                <th>Nama</th>
+                <th>Nama Calon</th>
                 <th>Asal Sekolah</th>
                 <th>Nilai</th>
-                <th>Info Jalur (Polimorfik)</th>
+                <th>Info Jalur</th>
                 <th>Total Biaya</th>
             </tr>
           </thead>";
@@ -50,7 +45,7 @@ function renderTabel($judul, $daftarData) {
                   </tr>";
         }
     }
-    echo "</tbody></table><br>";
+    echo "</tbody></table>";
 }
 ?>
 
@@ -59,10 +54,9 @@ function renderTabel($judul, $daftarData) {
 <head>
     <title>Sistem Pendaftaran Mahasiswa</title>
     <style>
-        body { font-family: 'Times New Roman', serif; margin: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-        th { background-color: #f2f2f2; text-align: left; }
-        h2 { border-bottom: 2px solid #333; padding-bottom: 10px; }
+        body { font-family: 'Times New Roman', serif; margin: 30px; }
+        h1 { text-align: center; }
+        h2 { border-bottom: 2px solid #333; padding-bottom: 5px; }
     </style>
 </head>
 <body>

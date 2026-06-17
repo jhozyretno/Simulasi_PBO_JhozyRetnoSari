@@ -27,8 +27,8 @@ class pendaftaran_reguler extends Pendaftaran {
                 $row['asal_sekolah'],
                 $row['nilai_ujian'],
                 $row['biaya_pendaftaran_dasar'],
-                $row['pilihan_prodi'],  
-                $row['lokasi_kampus']  
+                $row['pilihan_prodi'] ?? '',
+                $row['lokasi_kampus'] ?? ''  
             );
         }
         return $hasil;

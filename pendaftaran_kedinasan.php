@@ -27,8 +27,8 @@ class pendaftaran_kedinasan extends Pendaftaran {
                 $row['asal_sekolah'],
                 $row['nilai_ujian'],
                 $row['biaya_pendaftaran_dasar'],
-                $row['sk_ikatan_dinas'],  
-                $row['instansi_sponsor']  
+                $row['sk_ikatan_dinas'] ?? '',
+                $row['instansi_sponsor'] ?? ''
             );
         }
         return $hasil;
