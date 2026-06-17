@@ -8,7 +8,7 @@ class pendaftaran_reguler extends pendaftaran {
     // Tangkap semua parameter dari parent + parameter spesifik jalur ini
     public function __construct($id, $nama, $asal, $nilai, $biaya_dasar, $prodi, $lokasi) {
         // Lempar parameter umum ke constructor Pendaftaran.php
-        parent::__construct($id, $nama, $asal, $nilai, $biaya_dasar);
+        parent::__construct($id, $nama, $asal, $nilai, $biaya_pendaftaran_dasar);
         
         // Simpan parameter spesifik
         $this->pilihanProdi = $prodi;
@@ -42,7 +42,7 @@ class pendaftaran_reguler extends pendaftaran {
 
     public function hitungTotalBiaya() {
         // Memanggil fungsi getter dari kelas parent
-        return $this->getBiayaPendaftaranDasar(); 
+        return $this->getbiaya_pendaftaran_dasar(); 
     }
 
     public function tampilkanInfoJalur() {
