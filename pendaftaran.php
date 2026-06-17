@@ -19,6 +19,13 @@ abstract class Pendaftaran {
         $this->biaya_pendaftaran_dasar = $row_data['biaya_pendaftaran_dasar'] ?? null;
     }
 
+    // Getter untuk mengakses properti terproktesi jika dibutuhkan dari luar kelas
+    public function getIdPendaftaran() { return $this->id_pendaftaran; }
+    public function getNamaCalon() { return $this->nama_calon; }
+    public function getAsalSekolah() { return $this->asal_sekolah; }
+    public function getNilaiUjian() { return $this->nilai_ujian; }
+    public function getBiayaPendaftaranDasar() { return $this->biaya_pendaftaran_dasar; }
+
     // Contoh abstract method (Biasanya abstract class memiliki minimal 1 abstract method Method ini nantinya WAJIB di-override oleh class turunannya (Reguler, Prestasi, Kedinasan)
     abstract public function hitungTotalBiaya();
     abstract public function tampilkanInfoJalur();
