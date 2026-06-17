@@ -1,22 +1,16 @@
 <?php
 require_once 'pendaftaran.php';
 
-// Menyesuaikan penulisan nama class Pendaftaran dengan huruf besar di awal
 class pendaftaran_reguler extends Pendaftaran {
     protected $pilihanProdi;
     protected $lokasiKampus;
 
-    // Tangkap semua parameter dari parent + parameter spesifik jalur ini
     public function __construct($id, $nama, $asal, $nilai, $biaya_dasar, $prodi, $lokasi) {
-        // PERBAIKAN 1: Gunakan variabel $biaya_dasar sesuai dengan parameter di atas
         parent::__construct($id, $nama, $asal, $nilai, $biaya_dasar);
-        
-        // Simpan parameter spesifik
         $this->pilihanProdi = $prodi;
         $this->lokasiKampus = $lokasi;
     }
 
-    // GETTER SPESIFIK JALUR REGULER
     public function getPilihanProdi() { return $this->pilihanProdi; }
     public function getLokasiKampus() { return $this->lokasiKampus; }
 
@@ -27,7 +21,6 @@ class pendaftaran_reguler extends Pendaftaran {
         
         $hasil = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            // Instansiasi objek dengan memasukkan parameter satu per satu
             $hasil[] = new pendaftaran_reguler(
                 $row['id_pendaftaran'],
                 $row['nama_calon'],
@@ -41,13 +34,12 @@ class pendaftaran_reguler extends Pendaftaran {
         return $hasil;
     }
 
+    // Hanya deklarasi dasar untuk Tahap 4 (menghindari error abstract)
     public function hitungTotalBiaya() {
-        // PERBAIKAN 2: Panggil nama fungsi getter yang sama persis dengan di kelas Pendaftaran
-        return $this->getBiayaPendaftaranDasar(); 
+        return 0; 
     }
 
     public function tampilkanInfoJalur() {
-        // Menggunakan getter spesifik di dalam class sendiri
         return "Prodi: " . $this->getPilihanProdi() . " | Lokasi: " . $this->getLokasiKampus();
     }
 }
