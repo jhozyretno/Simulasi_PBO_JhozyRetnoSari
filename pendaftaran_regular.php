@@ -34,9 +34,8 @@ class pendaftaran_reguler extends Pendaftaran {
         return $hasil;
     }
 
-    // Hanya deklarasi dasar untuk Tahap 4 (menghindari error abstract)
     public function hitungTotalBiaya() {
-        return 0; 
+        return $this->getBiayaPendaftaranDasar(); 
     }
 
     public function tampilkanInfoJalur() {

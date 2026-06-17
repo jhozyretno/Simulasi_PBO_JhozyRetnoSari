@@ -34,9 +34,8 @@ class pendaftaran_prestasi extends Pendaftaran {
         return $hasil;
     }
 
-    // Hanya deklarasi dasar untuk Tahap 4
     public function hitungTotalBiaya() {
-        return 0; 
+        return $this->getBiayaPendaftaranDasar() - 50000; 
     }
 
     public function tampilkanInfoJalur() {
