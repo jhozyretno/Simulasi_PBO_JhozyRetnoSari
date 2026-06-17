@@ -1,14 +1,15 @@
 <?php
 require_once 'pendaftaran.php';
 
-class pendaftaran_reguler extends pendaftaran {
+// Menyesuaikan penulisan nama class Pendaftaran dengan huruf besar di awal
+class pendaftaran_reguler extends Pendaftaran {
     protected $pilihanProdi;
     protected $lokasiKampus;
 
     // Tangkap semua parameter dari parent + parameter spesifik jalur ini
     public function __construct($id, $nama, $asal, $nilai, $biaya_dasar, $prodi, $lokasi) {
-        // Lempar parameter umum ke constructor Pendaftaran.php
-        parent::__construct($id, $nama, $asal, $nilai, $biaya_pendaftaran_dasar);
+        // PERBAIKAN 1: Gunakan variabel $biaya_dasar sesuai dengan parameter di atas
+        parent::__construct($id, $nama, $asal, $nilai, $biaya_dasar);
         
         // Simpan parameter spesifik
         $this->pilihanProdi = $prodi;
@@ -41,12 +42,12 @@ class pendaftaran_reguler extends pendaftaran {
     }
 
     public function hitungTotalBiaya() {
-        // Memanggil fungsi getter dari kelas parent
-        return $this->getbiaya_pendaftaran_dasar(); 
+        // PERBAIKAN 2: Panggil nama fungsi getter yang sama persis dengan di kelas Pendaftaran
+        return $this->getBiayaPendaftaranDasar(); 
     }
 
     public function tampilkanInfoJalur() {
-        // Menggunakan getter spesifik di dalam class sendiri (opsional tapi rapi)
+        // Menggunakan getter spesifik di dalam class sendiri
         return "Prodi: " . $this->getPilihanProdi() . " | Lokasi: " . $this->getLokasiKampus();
     }
 }
