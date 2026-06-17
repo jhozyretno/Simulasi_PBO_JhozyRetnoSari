@@ -4,7 +4,7 @@ abstract class Pendaftaran {
     protected $nama_calon;
     protected $asal_sekolah;
     protected $nilai_ujian;
-    protected $biayaPendaftaranDasar; 
+    protected $biaya_pendaftaran_dasar; 
 
     // Constructor "Biasa" dengan parameter satu per satu
     public function __construct($id, $nama, $asal, $nilai, $biaya_dasar) {
@@ -12,14 +12,14 @@ abstract class Pendaftaran {
         $this->nama_calon = $nama;
         $this->asal_sekolah = $asal;
         $this->nilai_ujian = $nilai;
-        $this->biayaPendaftaranDasar = $biaya_dasar;
+        $this->biaya_pendaftaran_dasar = $biaya_dasar;
     }
 
     public function getIdPendaftaran() { return $this->id_pendaftaran; }
     public function getNamaCalon() { return $this->nama_calon; }
     public function getAsalSekolah() { return $this->asal_sekolah; }
     public function getNilaiUjian() { return $this->nilai_ujian; }
-    public function getBiayaPendaftaranDasar() { return $this->biayaPendaftaranDasar; }
+    public function getBiayaPendaftaranDasar() { return $this->biaya_pendaftaran_dasar; }
 
     abstract public function hitungTotalBiaya();
     abstract public function tampilkanInfoJalur(); 

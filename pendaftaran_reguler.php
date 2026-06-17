@@ -5,15 +5,17 @@ class pendaftaran_reguler extends pendaftaran {
     protected $pilihanProdi;
     protected $lokasiKampus;
 
-    public function __construct($row_data) {
-        parent::__construct($row_data);
-        $this->pilihanProdi = $row_data['pilihan_prodi'] ?? '-';
-        $this->lokasiKampus = $row_data['lokasi_kampus'] ?? '-';
+    // Tangkap semua parameter dari parent + parameter spesifik jalur ini
+    public function __construct($id, $nama, $asal, $nilai, $biaya_dasar, $prodi, $lokasi) {
+        // Lempar parameter umum ke constructor Pendaftaran.php
+        parent::__construct($id, $nama, $asal, $nilai, $biaya_dasar);
+        
+        // Simpan parameter spesifik
+        $this->pilihanProdi = $prodi;
+        $this->lokasiKampus = $lokasi;
     }
 
-    // =========================================
     // GETTER SPESIFIK JALUR REGULER
-    // =========================================
     public function getPilihanProdi() { return $this->pilihanProdi; }
     public function getLokasiKampus() { return $this->lokasiKampus; }
 
@@ -24,13 +26,23 @@ class pendaftaran_reguler extends pendaftaran {
         
         $hasil = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $hasil[] = new pendaftaran_reguler($row);
+            // Instansiasi objek dengan memasukkan parameter satu per satu
+            $hasil[] = new pendaftaran_reguler(
+                $row['id_pendaftaran'],
+                $row['nama_calon'],
+                $row['asal_sekolah'],
+                $row['nilai_ujian'],
+                $row['biaya_pendaftaran_dasar'],
+                $row['pilihan_prodi'],  
+                $row['lokasi_kampus']  
+            );
         }
         return $hasil;
     }
 
     public function hitungTotalBiaya() {
-        return $this->biaya_pendaftaran_dasar; 
+        // Memanggil fungsi getter dari kelas parent
+        return $this->getBiayaPendaftaranDasar(); 
     }
 
     public function tampilkanInfoJalur() {
