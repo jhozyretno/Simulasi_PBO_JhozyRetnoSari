@@ -2,7 +2,7 @@
 class Database {
     // Sesuaikan konfigurasi ini dengan server lokal (Laragon)
     private $host = "localhost";
-    private $db_name = "Ddb_simulasi_pbo_ti1c_jhozyretnosari";
+    private $db_name = "db_simulasi_pbo_ti1c_jhozyretnosari";
     private $username = "root"; 
     private $password = ""; 
     public $conn;
