@@ -35,7 +35,7 @@ class pendaftaran_reguler extends Pendaftaran {
     }
 
     public function hitungTotalBiaya() {
-        return $this->getBiayaPendaftaranDasar(); 
+        return 0; 
     }
 
     public function tampilkanInfoJalur() {
